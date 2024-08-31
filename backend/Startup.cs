@@ -25,8 +25,8 @@ namespace EmployeeRegisterAPI
 
             services.AddDbContext<EmployeeDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
-             // CORS configuration
+
+            // CORS configuration
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin", builder =>
