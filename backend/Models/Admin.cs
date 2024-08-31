@@ -10,8 +10,9 @@ namespace EmployeeRegitsAPI.Models
     public class Admin
     {
         [Key]
+        [Column(TypeName = "nvarchar(50)")]
         public string username { get; set; }
-        [Column(TypeName = "nvarchar(10)")]
-        public int password { get; set; }
+        [Column(TypeName = "nvarchar(70)")]
+        public string password { get; set; }
     }
 }

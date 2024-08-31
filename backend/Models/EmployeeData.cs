@@ -20,7 +20,7 @@ namespace EmployeeRegitsAPI.Models
         public string EmployeeGender { get; set; }
         public string EmployeeStatus { get; set; }
         public string EmployeeUsername { get; set; }
-        public int EmployeePassword { get; set; }
+        public string EmployeePassword { get; set; }
 
     }
 }

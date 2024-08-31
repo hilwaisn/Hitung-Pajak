@@ -12,10 +12,12 @@ namespace EmployeeRegisTAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly EmployeeDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EmployeeController(EmployeeDbContext context)
+        public EmployeeController(EmployeeDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
@@ -36,9 +38,9 @@ namespace EmployeeRegisTAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        public async Task<ActionResult<EmployeeData>> PostEmployee(EmployeeData employeeData)
         {
-            _context.Employees.Add(employee);
+            _context.Employeed.Add(employeeData);
             await _context.SaveChangesAsync();
             return StatusCode(201);
         }
