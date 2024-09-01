@@ -15,10 +15,11 @@ namespace EmployeeRegitsAPI.Models
         public string EmployeeName { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public long EmployeeNik { get; set; }
-        public long EmployeeSalary { get; set; }
-        public long EmployeeAllowance { get; set; }
+        public decimal EmployeeSalary { get; set; }
+        public decimal EmployeeAllowance { get; set; }
         public string EmployeeGender { get; set; }
         public string EmployeeStatus { get; set; }
+        public int EmployeeDependents{get; set;}
         public string EmployeeUsername { get; set; }
         public string EmployeePassword { get; set; }
 

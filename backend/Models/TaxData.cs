@@ -15,20 +15,19 @@ namespace EmployeeRegitsAPI.Models
         public string EmployeeName { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public long EmployeeNik { get; set; }
-        public long EmployeeSalary { get; set; }
-        public long EmployeeAllowance { get; set; }
-        public long TaxPositiom { get; set; }
-        public long TaxJkk { get; set; }
-        public long TaxJkm { get; set; }
-        public long TaxJpk { get; set; }
-        public long TaxJht { get; set; }
-        public long TaxMni { get; set; }
-        public long TaxAni { get; set; }
-        public long TaxPtkp { get; set; }
-        public long TaxPkp { get; set; }
-        public long TaxOwed { get; set; }
-        public long TaxPph21Year { get; set; }
-        public long TaxPph21Month { get; set; }
-
+        public decimal EmployeeSalary { get; set; }
+        public decimal EmployeeAllowance { get; set; }
+        public decimal TaxPositiom { get; set; }
+        public decimal TaxJkk { get; set; }
+        public decimal TaxJkm { get; set; }
+        public decimal TaxJpk { get; set; }
+        public decimal TaxJht { get; set; }
+        public decimal TaxMni { get; set; }
+        public decimal TaxAni { get; set; }
+        public decimal TaxPtkp { get; set; }
+        public decimal TaxPkp { get; set; }
+        public decimal TaxOwed { get; set; }
+        public decimal TaxPph21Year { get; set; }
+        public decimal TaxPph21Month { get; set; }
     }
 }

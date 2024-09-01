@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20240831151036_EmployeeDBContext")]
-    partial class EmployeeDBContext
+    [Migration("20240901012828_TaxSalary")]
+    partial class TaxSalary
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace backend.Migrations
 
                     b.Property<string>("EmployeePassword")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(70)");
 
                     b.HasKey("EmployeeUsername");
 
@@ -60,8 +60,8 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
 
-                    b.Property<long>("EmployeeAllowance")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("EmployeeAllowance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("EmployeeGender")
                         .IsRequired()
@@ -79,8 +79,8 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("EmployeeSalary")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("EmployeeSalary")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("EmployeeStatus")
                         .IsRequired()
@@ -103,8 +103,8 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
 
-                    b.Property<long>("EmployeeAllowance")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("EmployeeAllowance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("EmployeeName")
                         .IsRequired()
@@ -114,44 +114,44 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("EmployeeSalary")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("EmployeeSalary")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxAni")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxAni")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxJht")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxJht")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxJkk")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxJkk")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxJkm")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxJkm")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxJpk")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxJpk")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxMni")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxMni")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxOwed")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxOwed")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxPkp")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxPkp")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxPositiom")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxPositiom")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxPph21Month")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxPph21Month")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxPph21Year")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxPph21Year")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TaxPtkp")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("TaxPtkp")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("EmployeeId");
 

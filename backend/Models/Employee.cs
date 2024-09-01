@@ -12,7 +12,7 @@ namespace EmployeeRegitsAPI.Models
         [Key]
         [Column(TypeName = "nvarchar(50)")]
         public string EmployeeUsername { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "nvarchar(70)")]
         public string EmployeePassword { get; set; }
 
     }

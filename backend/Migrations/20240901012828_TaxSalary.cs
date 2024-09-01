@@ -5,7 +5,7 @@
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class EmployeeDBContext : Migration
+    public partial class TaxSalary : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,8 +30,8 @@ namespace backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     EmployeeNik = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    EmployeeSalary = table.Column<long>(type: "bigint", nullable: false),
-                    EmployeeAllowance = table.Column<long>(type: "bigint", nullable: false),
+                    EmployeeSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EmployeeAllowance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EmployeeGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmployeeStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmployeeUsername = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -47,7 +47,7 @@ namespace backend.Migrations
                 columns: table => new
                 {
                     EmployeeUsername = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    EmployeePassword = table.Column<string>(type: "nvarchar(50)", nullable: false)
+                    EmployeePassword = table.Column<string>(type: "nvarchar(70)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,20 +62,20 @@ namespace backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     EmployeeNik = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    EmployeeSalary = table.Column<long>(type: "bigint", nullable: false),
-                    EmployeeAllowance = table.Column<long>(type: "bigint", nullable: false),
-                    TaxPositiom = table.Column<long>(type: "bigint", nullable: false),
-                    TaxJkk = table.Column<long>(type: "bigint", nullable: false),
-                    TaxJkm = table.Column<long>(type: "bigint", nullable: false),
-                    TaxJpk = table.Column<long>(type: "bigint", nullable: false),
-                    TaxJht = table.Column<long>(type: "bigint", nullable: false),
-                    TaxMni = table.Column<long>(type: "bigint", nullable: false),
-                    TaxAni = table.Column<long>(type: "bigint", nullable: false),
-                    TaxPtkp = table.Column<long>(type: "bigint", nullable: false),
-                    TaxPkp = table.Column<long>(type: "bigint", nullable: false),
-                    TaxOwed = table.Column<long>(type: "bigint", nullable: false),
-                    TaxPph21Year = table.Column<long>(type: "bigint", nullable: false),
-                    TaxPph21Month = table.Column<long>(type: "bigint", nullable: false)
+                    EmployeeSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EmployeeAllowance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxPositiom = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxJkk = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxJkm = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxJpk = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxJht = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxMni = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxAni = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxPtkp = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxPkp = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxOwed = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxPph21Year = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxPph21Month = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
