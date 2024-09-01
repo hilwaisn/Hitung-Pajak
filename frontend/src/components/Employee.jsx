@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import EmployeeData from "./EmployeeData";
 
 const initialFieldsValue = {
   employeeID: 0,
@@ -11,10 +10,9 @@ const initialFieldsValue = {
 const Employee = () => {
   const [values, setValues] = useState(initialFieldsValue);
   const [errors, setErrors] = useState({});
-  const [Employee, setEmployeed] = useState([]);
+  const [Employee, setEmployee] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
   const [addForEdit, setAddOrEdit] = useState(null);
-
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -44,7 +42,7 @@ const Employee = () => {
   };
 
   useEffect(() => {
-    refreshEmployeeData();
+    refreshEmployee();
   }, []);
 
   const employeeAPI = (url = "http://localhost:8000/api/Employee/") => {
@@ -54,11 +52,11 @@ const Employee = () => {
     };
   };
 
-  function refreshEmployeeData() {
+  function refreshEmployee() {
     employeeAPI()
       .fetchAll()
       .then((res) => {
-        setEmployeed(res.data);
+        setEmployee(res.data);
       })
       .catch((err) => console.log(err));
   }

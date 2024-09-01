@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const initialFieldsValue = {
@@ -10,6 +10,8 @@ const initialFieldsValue = {
 const Admin = () => {
   const [values, setValues] = useState(initialFieldsValue);
   const [errors, setErrors] = useState({});
+  const [Admin, setAdmin] = useState([]);
+
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -38,13 +40,26 @@ const Admin = () => {
     }
   };
 
+  useEffect(() => {
+    refreshAdmin();
+  }, []);
+
   const employeeAPI = (url = "http://localhost:8000/api/Admin/") => {
     return {
       fetchAll: () => axios.get(url),
       create: (newRecord) => axios.post(url, newRecord),
     };
   };
-  
+
+  function refreshAdmin() {
+    employeeAPI()
+      .fetchAll()
+      .then((res) => {
+        setAdmin(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   const applyErrorClass = field => (field in errors && errors[field] === false ? ' invalid-field' : '');
 
   return (

@@ -13,7 +13,7 @@ namespace Backend.Models
         public int EmployeeId { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string EmployeeName { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "nvarchar(16)")]
         public long EmployeeNik { get; set; }
         public decimal EmployeeSalary { get; set; }
         public decimal EmployeeAllowance { get; set; }

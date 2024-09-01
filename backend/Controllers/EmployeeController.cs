@@ -38,9 +38,9 @@ public class EmployeeController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<EmployeeData>> PostEmployee(EmployeeData employeeData)
+    public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
     {
-        _context.Employeed.Add(employeeData);
+        _context.Employees.Add(employee);
         await _context.SaveChangesAsync();
         return StatusCode(201);
     }
