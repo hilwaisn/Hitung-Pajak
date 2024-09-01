@@ -1,9 +1,22 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const initialFieldsValue = {
+  employeeID: 0,
+  employeeName: '',
+  employeeNik: '',
+  employeeSalary: '',
+  employeeAllowance: '',
+  employeeGender: '',
+  employeeStatus: '',
+  employeeDependents: 0,
+  employeeUsername: '',
+  employeePassword: '',
+};
+
 const EmployeeData = () => {
   const [EmployeeData, setEmployeed] = useState([]);
-  //const [addOrEdit, setAddOrEdit]= useState[null];
+  const [addOrEdit, setAddOrEdit]= useState[null];
   const [recordForEdit, setRecordForEdit] = useState(null);
 
   useEffect(() => {
@@ -70,7 +83,8 @@ const EmployeeData = () => {
             <span>{data.EmployeeDataalary}</span> 
             <span>{data.employeeAllowance}</span> 
             <span>{data.employeeGender}</span> 
-            <span>{data.EmployeeDatatatus}</span> 
+            <span>{data.employeeStatus}</span> 
+            <span>{data.employeeDependents}</span>
             <span>{data.employeeUsername}</span> 
             <span>{data.employeePassword}</span> <br />
             <button className="btn btn-light delete-button" onClick={e => onDelete(e, parseInt(data.employeeID))}>

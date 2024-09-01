@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const initialFieldsValue = {
-  employeeID: 0,
+  id: 0,
   username: '',
   password: '',
 };

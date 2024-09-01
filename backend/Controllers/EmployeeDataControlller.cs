@@ -1,10 +1,9 @@
-using backend.Migrations;
+using Backend.Data;
+using Backend.Models;
 using EmployeeRegisterAPI.Data;
-using EmployeeRegitsAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -32,35 +31,35 @@ public class EmployeeDataController : ControllerBase
         return CreatedAtAction("GetEmployeeData", new { id = employeeData.EmployeeId }, employeeData);
     }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployeeData(int id, EmployeeData employeeData)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateEmployeeData(int id, EmployeeData employeeData)
+    {
+        if (id != employeeData.EmployeeId)
         {
-            if (id != employeeData.EmployeeId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(employeeData).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return BadRequest();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployeeData(int id)
+        _context.Entry(employeeData).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteEmployeeData(int id)
+    {
+        var employeeD = await _context.Employeed.FindAsync(id);
+
+        if (employeeD is null)
         {
-            var employeeD = await _context.Employeed.FindAsync(id);
-
-            if (employeeD is null)
-            {
-                return NotFound();
-            }
-
-            _context.Employeed.Remove(employeeD);
-            await _context.SaveChangesAsync();
-
-            return Ok();
+            return NotFound();
         }
+
+        _context.Employeed.Remove(employeeD);
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
 
     private TaxData HitungPajak(EmployeeData employee)
     {

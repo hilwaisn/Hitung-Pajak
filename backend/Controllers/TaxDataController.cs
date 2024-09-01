@@ -1,10 +1,9 @@
-using backend.Migrations;
+using Backend.Data;
+using Backend.Models;
 using EmployeeRegisterAPI.Data;
-using EmployeeRegitsAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 
 [Route("api/[controller]")]
 [ApiController]

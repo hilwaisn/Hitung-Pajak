@@ -13,6 +13,8 @@ const Employee = () => {
   const [errors, setErrors] = useState({});
   const [Employee, setEmployeed] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
+  const [addForEdit, setAddOrEdit] = useState(null);
+
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -69,7 +71,7 @@ const Employee = () => {
         <p className="lead">Employee</p>
       </div>
       <div className="col-md-4">
-        <Employee addOrEdit={addOrEdit} recordForEdit={recordForEdit} />
+        <Employee addOrEdit={addForEdit} recordForEdit={recordForEdit} />
       </div>
       <form
         autoComplete="off"
