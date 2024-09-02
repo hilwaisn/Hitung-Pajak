@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { House, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const initialFieldsValue = {
   id: 0,
@@ -64,30 +66,48 @@ const Admin = () => {
 
   return (
     <>
-      <div className="container text-center">
-        <p className="lead">Admin</p>
+      <header className="flex w-full items-center justify-between bg-slate-100 p-4 shadow-lg">
+      <div className="flex w-1/2  items-center gap-1">
+        <img src="https://www.canva.com/design/DAGPk408xO0/4lRWfjNb50z3IDFqFMpVyw/view?utm_content=DAGPk408xO0&utm_campaign=designshare&utm_medium=link&utm_source=editor" alt="" />
+        <h1 className="text-2xl font-bold">Hitung Pajak</h1>
       </div>
-
+      <nav className="flex w-1/2">
+            <House className="w-6 h-6" />
+            <Link to="/" className="text-gray-800 hover:text-gray-900">Home</Link>
+            <Info className="w-6 h-6" />
+            <Link to="/about" className="text-gray-800 hover:text-gray-900">About</Link>
+      </nav>
+    </header>
+      <div className="container text-center mt-10">
+        <h2 className="text-3xl font-bold mb-4">LOGIN</h2>
+      </div>
       <form
         autoComplete="off"
         noValidate
         onSubmit={handleFormSubmit}
+        className="container mt-8"
       >
-        <div className="card">
-            <div className="form-group">
+        <div className="card p-6 rounded-lg shadow-md">
+            <div className="form-group mb-4">
+              <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Username</label>
               <input
-                className={"form-control" + applyErrorClass('username')}
-                placeholder="Username"
+                type="text"
+                id="username"
+                className={"form-control w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500" + applyErrorClass('username')}
+                placeholder="Masukkan Username"
                 name="username"
                 value={values.username}
                 onChange={handleInputChange}
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-4">
+              <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
               <input
-                className="form-control"
-                placeholder="Password"
+                type="password"
+                id="password"
+                className="form-control w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Masukkan Password"
                 name="password"
                 value={values.password}
                 onChange={handleInputChange}
@@ -95,7 +115,7 @@ const Admin = () => {
             </div>
 
             <div className="form-group text-center">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary px-6 py-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 Submit
               </button>
             </div>

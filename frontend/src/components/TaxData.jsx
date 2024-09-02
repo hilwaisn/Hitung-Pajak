@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import EmployeeData from "./EmployeeData";
+//import EmployeeData from "./EmployeeData";
 import axios from "axios";
 
 const initialFieldsValue = {
@@ -17,7 +17,7 @@ const initialFieldsValue = {
 
 const TaxData = () => {
   const [TaxData, setTaxData] = useState([]);
-  const [addOrEdit, setAddOrEdit]= useState[null];
+  //const [addOrEdit, setAddOrEdit]= useState[null];
   const [recordForEdit, setRecordForEdit] = useState(null);
 
   useEffect(() => {
