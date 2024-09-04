@@ -15,14 +15,13 @@ namespace EmployeeRegisterAPI.Data
 
         }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employee { get; set; }
         public DbSet<EmployeeData> Employeed { get; set; }
         public DbSet<TaxData> TaxDatas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Configure entities with Fluent API if necessary
         }
 
         public async Task SeedAsync()

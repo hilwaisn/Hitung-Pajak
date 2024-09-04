@@ -30,7 +30,7 @@ namespace backend.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    EmployeeNik = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    EmployeeNik = table.Column<string>(type: "nvarchar(16)", nullable: false),
                     EmployeeSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EmployeeAllowance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EmployeeGender = table.Column<string>(type: "nvarchar(max)", nullable: false),

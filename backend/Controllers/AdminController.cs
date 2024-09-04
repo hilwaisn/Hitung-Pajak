@@ -3,34 +3,69 @@ using Backend.Models;
 using Backend.Data;
 using Microsoft.AspNetCore.Authorization;
 using EmployeeRegisterAPI.Data;
+using EmployeeRegitsAPI.Helpers;
+using Microsoft.EntityFrameworkCore;
 
-[Route("api/[controller]")]
-[ApiController]
-[Authorize]
-public class AdminController : ControllerBase
+namespace EmployeeRegitsAPI.Controllers
 {
-    private readonly EmployeeDbContext _context;
-    private readonly IWebHostEnvironment _hostEnvironment;
-
-    public AdminController(EmployeeDbContext context, IWebHostEnvironment hostEnvironment)
+    [Authorize(Roles = "admin")]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AdminController : ControllerBase
     {
-        _context = context;
-        _hostEnvironment = hostEnvironment;
-    }
+        private readonly EmployeeDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly JwtTokenService _jwtTokenService;
 
-    [AllowAnonymous]
-    [HttpPost]
-    public async Task<ActionResult<Admin>> PostAdmmin(Admin admin)
-    {
-        var adminNew = new Admin
+        public AdminController(EmployeeDbContext context, IWebHostEnvironment hostEnvironment, JwtTokenService jwtTokenService)
         {
-            username = admin.username,
-            password = BCrypt.Net.BCrypt.HashPassword(admin.password)
+            _context = context;
+            _hostEnvironment = hostEnvironment;
+            _jwtTokenService = jwtTokenService;
+        }
 
-        };
-        _context.Admins.Add(adminNew);
-        await _context.SaveChangesAsync();
-        return StatusCode(201);
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(Admin admin)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var adminData = await _context.Admins.FirstOrDefaultAsync(a => a.username == admin.username);
+            if (adminData == null || !BCrypt.Net.BCrypt.Verify(admin.password, adminData.password))
+            {
+                return BadRequest(new { message = "Invalid Credentials" });
+            }
+
+            var jwt = _jwtTokenService.Generate(adminData.username, "admin");
+
+            Response.Cookies.Append("token", jwt, new CookieOptions
+            {
+                HttpOnly = true,
+            });
+
+            return Ok(new
+            {
+                token = jwt,
+                message = "You have successfully logged in"
+            });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Admin>> PostAdmmin(Admin admin)
+        {
+            var adminNew = new Admin
+            {
+                username = admin.username,
+                password = BCrypt.Net.BCrypt.HashPassword(admin.password)
+
+            };
+            _context.Admins.Add(adminNew);
+            await _context.SaveChangesAsync();
+            return StatusCode(201);
+        }
+
     }
-
 }

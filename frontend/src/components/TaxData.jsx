@@ -1,23 +1,8 @@
 import { useEffect, useState } from "react";
-//import EmployeeData from "./EmployeeData";
 import axios from "axios";
-
-const initialFieldsValue = {
-  employeeID: 0,
-  employeeName: '',
-  employeeNik: '',
-  employeeSalary: '',
-  employeeAllowance: '',
-  employeeGender: '',
-  employeeStatus: '',
-  employeeDependents: 0,
-  employeeUsername: '',
-  employeePassword: '',
-};
 
 const TaxData = () => {
   const [TaxData, setTaxData] = useState([]);
-  //const [addOrEdit, setAddOrEdit]= useState[null];
   const [recordForEdit, setRecordForEdit] = useState(null);
 
   useEffect(() => {
@@ -81,7 +66,7 @@ const TaxData = () => {
         <div className="card-body">
             <h5>{data.employeeName}</h5>
             <span>{data.employeeNik}</span> 
-            <span>{data.TaxDataalary}</span> 
+            <span>{data.TaxDataSalary}</span> 
             <span>{data.employeeAllowance}</span> 
             <span>{data.employeeGender}</span> 
             <span>{data.TaxDatatatus}</span> 

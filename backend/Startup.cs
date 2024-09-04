@@ -1,5 +1,6 @@
 using System.Text;
 using EmployeeRegisterAPI.Data;
+using EmployeeRegitsAPI.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -19,38 +20,25 @@ namespace EmployeeRegisterAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var secureKey = "SemangatProjekannyaHilllwaaaaaaaaaaa";
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
             .AddJwtBearer(options =>
             {
-                var jwtSettings = Configuration.GetSection("Jwt");
-                var key = jwtSettings.GetSection("Key").Value;
-                var issuer = jwtSettings.GetSection("Issuer").Value;
-
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = issuer,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
-                };
-                options.Events = new JwtBearerEvents
-                {
-                    OnMessageReceived = context =>
-                    {
-                        var token = context.Request.Cookies["AccessToken"];
-                        context.Token = token;
-                        return Task.CompletedTask;
-                    }
+                    ValidateIssuerSigningKey = false,
+                    ValidIssuer = secureKey,
+                    ValidAudience = secureKey,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secureKey))
                 };
             });
-            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -90,6 +78,16 @@ namespace EmployeeRegisterAPI
                            .AllowAnyHeader()
                            .AllowCredentials();
                 });
+            });
+
+            services.AddSingleton<JwtTokenService>();
+
+            services.AddControllers();
+
+            services.AddLogging(logging =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
             });
         }
 

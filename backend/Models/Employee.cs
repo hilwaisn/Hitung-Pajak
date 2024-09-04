@@ -14,6 +14,5 @@ namespace Backend.Models
         public string EmployeeUsername { get; set; }
         [Column(TypeName = "nvarchar(70)")]
         public string EmployeePassword { get; set; }
-
     }
 }

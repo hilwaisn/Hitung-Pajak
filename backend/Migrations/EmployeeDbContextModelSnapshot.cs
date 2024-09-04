@@ -76,7 +76,7 @@ namespace backend.Migrations
 
                     b.Property<string>("EmployeeNik")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("EmployeePassword")
                         .IsRequired()

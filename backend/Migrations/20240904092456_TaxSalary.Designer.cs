@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20240901140321_TaxSalary")]
+    [Migration("20240904092456_TaxSalary")]
     partial class TaxSalary
     {
         /// <inheritdoc />
@@ -79,7 +79,7 @@ namespace backend.Migrations
 
                     b.Property<string>("EmployeeNik")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("EmployeePassword")
                         .IsRequired()

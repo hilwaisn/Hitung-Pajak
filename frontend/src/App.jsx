@@ -1,20 +1,16 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import './App.css';
-import Admin from './components/Admin';
-// import Employee from './components/Employee';
-// import EmployeeData from './components/EmployeeData';
-// import TaxData from './components/TaxData';
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Router>
     <div>
-      <Admin />
-      {/* <Employee />
-      <EmployeeData />
-      <TaxData /> */}
+      <Header/>
+      <main className="min-h-screen">
+      <Outlet/>
+      </main>
+      <Footer/>
     </div>
-    </Router>
   );
 };
 

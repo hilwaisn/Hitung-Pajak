@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EmployeeRegisterAPI.Helpers
+namespace EmployeeRegitsAPI.Helpers
 {
-    public class JwtService
+    public class JwtTokenService
     {
-        private string secureKey = "this is my custom Secret key for authentication";
+        private string secureKey = "SemangatProjekannyaHilllwaaaaaaaaaaa"; //32 karakter
 
-        public string Generate(int id,bool isAdmin)
+        public string Generate(string user, string role)
         {
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secureKey));
             var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
@@ -21,18 +18,15 @@ namespace EmployeeRegisterAPI.Helpers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-                new Claim(ClaimTypes.Role, isAdmin ? "Admin" : "User")
+                new Claim("user", user),
+                new Claim("role", role)
             };
 
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(1),
-                signingCredentials: credentials);
-
-            //var payload = new JwtPayload(id.ToString(), null, null, null, DateTime.Today.AddDays(1));
-            //var payload = new JwtPayload(claims);
-            //var securityToken = new JwtSecurityToken(header, payload);
+                signingCredentials: credentials
+             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
@@ -46,7 +40,8 @@ namespace EmployeeRegisterAPI.Helpers
             {
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuerSigningKey = true,
-                ValidateIssuer = false,
+                ValidIssuer = secureKey,
+                ValidateIssuer = true,
                 ValidateAudience = false,
             }, out SecurityToken validatedToken);
 
